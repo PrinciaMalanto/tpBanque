@@ -36,9 +36,14 @@ public class GestionnaireCompte {
 
     @PersistenceContext(unitName = "banquePU")
     private EntityManager em;
-    
-    
+
     public void creerCompte(CompteBancaire c) {
         em.persist(c);
+    }
+
+    public List<CompteBancaire> getAllComptes() {
+        String s = "select c from comptebancaire as c";
+        TypedQuery<CompteBancaire> query = em.createNamedQuery(s, CompteBancaire.class);
+        return query.getResultList();
     }
 }
