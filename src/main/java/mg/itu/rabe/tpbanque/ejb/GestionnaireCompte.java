@@ -7,6 +7,7 @@ package mg.itu.rabe.tpbanque.ejb;
 import jakarta.annotation.sql.DataSourceDefinition;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
@@ -42,8 +43,14 @@ public class GestionnaireCompte {
     }
 
     public List<CompteBancaire> getAllComptes() {
-        String s = "select c from comptebancaire as c";
-        TypedQuery<CompteBancaire> query = em.createNamedQuery(s, CompteBancaire.class);
+        String s = "select c from CompteBancaire as c";
+        TypedQuery<CompteBancaire> query = em.createQuery(s, CompteBancaire.class);
         return query.getResultList();
+    }
+    
+    public Long nbComptes(){
+        String s = "select count(c) from CompteBancaire c";
+        Query query =em.createQuery(s);
+        return (Long) query.getSingleResult(); 
     }
 }
