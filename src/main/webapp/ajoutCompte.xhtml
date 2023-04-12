@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./WEB-INF/templates/template_defaut.xhtml">
+
+            <ui:define name="top">
+                Ajout d'un nouveau compte
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="form2">
+                    <h:panelGrid columns="3">
+                        Nom du nouveau compte : 
+                        <h:inputText id="nom" size="20" value="#{ajoutCompte.nom}"
+                                     required="true"
+                                     converterMessage="Le nom est incorrect"/>
+                        <h:message for="nom"/>
+                        Solde du nouveau compte : 
+                        <h:inputText id="solde" size="20" value="#{ajoutCompte.solde}"
+                                     required="true"
+                                     converterMessage="Solde incorrect. Veuillez saisir un nombre"/>
+                        <h:message for="solde"/>
+                    </h:panelGrid>
+                    <h:commandButton action="#{ajoutCompte.action()}" value="Enregistrer" />
+                </h:form>
+                <h:messages/>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
