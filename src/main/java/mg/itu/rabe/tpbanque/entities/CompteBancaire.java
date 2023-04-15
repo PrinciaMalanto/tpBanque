@@ -4,11 +4,16 @@
  */
 package mg.itu.rabe.tpbanque.entities;
 
+import jakarta.persistence.CascadeType;
 import java.io.Serializable;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -23,7 +28,10 @@ public class CompteBancaire implements Serializable {
     private Long id;
     private String nom;
     private Integer solde;
-
+    
+    @OneToMany (cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private List <OperationBancaire> operations =new ArrayList<>();
+    
     public CompteBancaire() {
     }
 
@@ -63,6 +71,10 @@ public class CompteBancaire implements Serializable {
             solde = 0;
         }
     }
+    
+    public List<OperationBancaire> getOperations() {  
+      return operations;  
+    } 
 
     @Override
     public int hashCode() {
