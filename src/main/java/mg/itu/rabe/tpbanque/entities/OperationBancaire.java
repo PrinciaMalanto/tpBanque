@@ -34,10 +34,37 @@ public class OperationBancaire implements Serializable {
         this.montant = montant;
         dateOperation = LocalDateTime.now();
     }
+    
 
     public Long getId() {
         return id;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getMontant() {
+        return montant;
+    }
+
+    public void setMontant(int montant) {
+        this.montant = montant;
+    }
+
+    public LocalDateTime getDateOperation() {
+        return dateOperation;
+    }
+
+    public void setDateOperation(LocalDateTime dateOperation) {
+        this.dateOperation = dateOperation;
+    }
+    
+    
 
     @Override
     public int hashCode() {
